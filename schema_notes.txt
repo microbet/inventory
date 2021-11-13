@@ -19,3 +19,38 @@ state_or_province varchar(40)
 country varchar(40)
 postal_code varchar(20)
 entity_id int(10), foreign key, not null
+
+product
+product_id int(10), primary key, not null
+name varchar(40)
+description text
+price_cents int(10)
+quantity int(10)
+details text
+supplier_id, foreign key, not null (this is entity_id)
+category_id, foreign key, not null
+
+product_category
+product_category_id int(10), primary key, not null
+name varchar(40)
+description text
+
+entity_category
+entity_category_id int(10), primary key, not null
+name varchar(40)
+description text
+
+order
+order_id int(10), primary key, not null
+unit_price_cents int(10)
+weight_lbs float
+quantity int(10)
+discount_cents int(10)
+date date
+product_id int(10), foreign key, not null
+customer_id int(10), foreign key, not null
+
+payment
+payment_id int(10), primary key, not null
+amt_cents int(10)
+order_id, foreign_key, not null
