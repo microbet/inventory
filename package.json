@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "electron": "^15.3.1"
+  },
+  "name": "inventory",
+  "description": "Desktop and mobile inventory management software",
+  "version": "1.0.0",
+  "main": "main.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/microbet/inventory.git"
+  },
+  "author": "Jay Hirsch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/microbet/inventory/issues"
+  },
+  "homepage": "https://github.com/microbet/inventory#readme"
+}
