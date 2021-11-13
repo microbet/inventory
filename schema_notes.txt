@@ -1,1 +1,21 @@
 Schema Notes
+
+entity
+entity_id int(10), primary key, not null
+first_name varchar(80)
+last_name varchar(80)
+
+phone
+phone_id int(10, primary key, not null
+number int(20)
+type varchar(10)
+entity_id int(10), foreign key, not null
+
+address
+address_id int(10), primary key, not null
+address varchar(40)
+city varchar(40)
+state_or_province varchar(40)
+country varchar(40)
+postal_code varchar(20)
+entity_id int(10), foreign key, not null
