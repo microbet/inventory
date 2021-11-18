@@ -4,6 +4,7 @@ const path = require('path');
 var knex = require("knex")({
   client:"sqlite3",
   connection: {
+    // filename: app.getPath('userData')
     filename: "./inventory.db"
   }
 });
@@ -32,8 +33,18 @@ async function createWindow() {
 app.on("ready", createWindow);
 
 ipcMain.on("toMain", (event, args) => {
-  let result = knex.select("first_name").from("entity")
-    result.then(function(rows) {
-      win.webContents.send("fromMain", rows[0].first_name);
+  if (args.type === "insert name") {
+    knex('entity').insert([{first_name: args.value, last_name: 'name'}])
+    .then(() => console.log("data inserted"))
+    .catch((err) => { console.log(err); throw err })
+  }
+  if (args.type === "delete name") {
+    knex('entity').where({entity_id: args.value}).del()
+    .then(() => console.log("data deleted"))
+    .catch((err) => { console.log(err); throw err })
+  }
+  knex.select('first_name', 'entity_id').from('entity')
+  .then((rows) => {
+    win.webContents.send("fromMain", rows);
   })
 });

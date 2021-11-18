@@ -8,13 +8,35 @@
     <title>Hello World!</title>
     <script>
       window.api.receive("fromMain", (data) => {
-          document.getElementById("result").innerHTML = data;
+          let people = '';
+          data.forEach(function(element) {
+            people += `<span>${element.first_name}</span>  &nbsp; <span onClick=delete_name("${element.entity_id}")>[x]</span><br>`;
+          })
+          document.getElementById("result").innerHTML = people;
       });
-      window.api.send("toMain", "some data");
+      let args = { type: 'load data', value: '' };
+      window.api.send("toMain", args);
+
+      function addName() {
+        let args = { type: 'insert name', value: document.getElementById('name').value };
+        window.api.send("toMain", args);
+        document.getElementById('name').value = '';
+      }
+
+      function delete_name(id) {
+        let args = { type: 'delete name', value: id };
+        window.api.send("toMain", args);
+      }
+
   </script>
   </head>
   <body>
     <h1>Hello World!</h1>
     <p id="result"></p>
+    <form action="./index.html" onsubmit="event.preventDefault(); addName();">
+      New name<br>
+      <input type='text' value='' id='name'>
+      <input type='submit' value='submit'>
+    </form>
   </body>
 </html>

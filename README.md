@@ -31,3 +31,10 @@ create table entity(entity_id integer primary key autoincrement, first_name text
 
 looking at this https://www.youtube.com/watch?v=c76FTxLRwAw
 going to look at this for packaging https://www.youtube.com/watch?v=aNJDdCjdDpU
+
+npm install electron-packager -g
+electron-packager . inventory --all -asar
+
+at the moment packaging only part working - doesn't work with db
+going to demo write, update, and delete to db in unpackaged version before
+packaging
